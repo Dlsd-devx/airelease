@@ -1,2 +1,0 @@
-# airrelease
-Air release project
