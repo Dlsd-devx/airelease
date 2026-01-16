@@ -1,0 +1,62 @@
+
+https://wiki/index.php?title=Change_Notes_%26_Change_Apply_Notes_in_Agility
+
+
+
+Introduction
+
+The following fields from Agility(V1) in the User Stories and Defects are used for generating the build specific Change Reports describing the changes made in SimCorp Dimension solution bundle. Read more about Change Reports here.SimCorp Dimension SolutionBundle-SCTeam - Home (sharepoint.com)
+
+-   Change Note (External and mandatory) - This is equivalent to the Siebel "Patch Note" and must be used for all Agility (V1) stories/defects. This should be updated for all the stories and defects related to Dimension product. The Change Note is an external field and therefore visible to all our customers. The Siebel Patch note field must still follow the classic description and be filled out while SCD version 24.04 and before.
+
+           Please consider the following when writing the note:  
+
+Do not use abbreviations unless they are known from SimCorp Dimension or they are commonly known by all our customers.
+Never refer to customer names.
+Never use references to other Agility items or fields, Attachments or about tools the customer doesn't know of (e.g. Monkey Test) etc.
+Write if the change has no effect on customer installations, like "update of internal SimCorp tool, which does not affect any customer installations".
+Avoid names on functions, tables, and so on except if it is visible to the customer., For example "added a new field xxx to the view A_PORCALCS" is OK.
+ 
+  ⚠️ IMPORTANT: As of 16.10.2024, empty Change Note is prevented. From version 24.07, PRs will fail if the change note is empty in Agility.
+
+ 
+-    Change Apply Note (External and optional) -  This is an optional field and should be updated with special apply instructions, if relevant for that particular change,. Change Apply Note is, like the Change Note, an external field that the customer can see in the Change Report. For reference with Siebel, this field is equivalent to the Siebel "SC Apply Note" and "Customer Apply Note" fields combined into one. We will still have to fill out the Siebel "SC Apply Note" and "Customer Apply Note" fields for 24.04 and before.
+This field is always shown together with the Change Note, so please do not just repeat the Change Note information.  When writing a Change Apply Note, please consider the same issues as for the Change Note e.g. not using unknown abbreviations etc. It is OK to write this note a bit more technical as in general it will be more technical persons reading this.
+
+        Please always write a Change Apply Note in case:
+
+Your change leads to an Alter Table (especially for large tables)
+Something might be logged in the patch log, so this should be checked
+Other examples could be if an new INS file is needed or authorisations need to be updated in order for the functionality to be used if that are not obvious
+ 
+-  Product (Internal and optional) - This field should be updated with relevant value for all Agility (V1) stories/defects.The new change report selects changes where the Product value is either SimCorp Dimension ornot updated. If a change does not apply to SCD or should be excluded from Change Report, then select the appropriate product value in this field or mark it as ‘Other’.
+
+ 
+
+
+This article describes how to use the different fields.
+
+The Developer is responsible for updating the fields. The Code reviewer and Tester is responsible for reviewing and ensuring that content follows the intended use of the fields and that the content is understandable for a customer for all external fields.
+
+-      When working on Development Branch - The following fields for Stories / Defects should be updated in Agility as described:
+
+Change Note (Mandatory): Add the note describing the change. This will be added into the Change Report and will be shared with Customers.
+Change Apply Note (Optional): Add special instructions, if applicable, for the change
+Product (Optional): If a change does not apply to SCD or should be excluded from Change Report, then select the appropriate product value in this field or mark it as ‘Other’.
+
+                 Note: The stories are selected to be displayed in Change Report only when the status is marked as Done or Accepted
+
+-      When patching changes to closed versions:
+
+When patching feature work using stories, following process should be followed:
+
+The stories used for development should follow the steps mentioned above.
+Create separate story for patching and update the following fields for this story:
+Change Note (Add the summary of the changes that are patched), Change Apply Note (if applicable) and Product as applicable.
+    Note: For closed version, the stories are displayed in the Change Report even when the status of story is not moved to Done or Accepted. This is to cater to the fact that the story needs to be kept alive until all the relevant closed versions are patched. When patching defects, following process should be followed:
+Same defect should be used for developing the fix as well as patching to closed versions.
+The following fields should be updated as soon as the fix is merged in the development branch.
+Change Note (Add the summary of the changes that are patched), Change Apply Note (if applicable) and Product as applicable.
+      Note: Since the same defect is use to apply the fix in the development version and then to patch to required closed version, it is included in the Change Report once the PR is merged. The status is not checked. Hence, make sure the Change Note.
+
+Categories: PatchingSupportTestingDevelopment

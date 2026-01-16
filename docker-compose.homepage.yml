@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      # IMPORTANT: Set this to your actual hostname or IP
+      # Can include port like: localhost:3000 or your.domain.com:3000
+      HOMEPAGE_ALLOWED_HOSTS: localhost
+      PUID: 1000
+      PGID: 1000
+    ports:
+      - "3000:3000"
+    volumes:
+      # Config directory - will be created if it doesn't exist
+      - ./homepage-config:/app/config
+      # Docker socket for Docker integrations (optional but recommended)
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
